@@ -1,0 +1,19 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>ALta de nuevo Empleo</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{ empleo_form.as_table }}
+    </table>
+
+    <input type="submit" class="btn btn-primary" value="Crear empleo" />
+
+</form>
+
+{% endblock %}

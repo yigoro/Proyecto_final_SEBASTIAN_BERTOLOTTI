@@ -1,0 +1,39 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>Buscador de Estudios</h2>
+<hr></hr>
+
+<form action="/blog_sab_app/search" method="GET">
+    <div>
+        <input type="text" name="text_search" id="estudio_universidad" placeholder="Buscar por Universidad">
+        <input type="submit" value="Buscar">
+    </div>
+</form>
+
+<hr></hr>
+
+<table id="tabla-datos">
+      <tr>
+        <th>Universidad</th>
+        <th>Anio Inicio</th>
+        <th>Titulo</th>
+        <th>finalizado</th>
+      </tr>
+
+{% if estudios %}
+    <ul>
+        {% for estudio in estudios %}
+            <tr>
+                <td>{{estudio.universidad}}</td>
+                <td>{{estudio.anio_inicio}}</td>
+                <td>{{estudio.titulo}}</td>
+                <td>{{estudio.finalizado}}</td>
+            </tr>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
+</table>

@@ -1,0 +1,30 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>Lista de Empleos</h2>
+<a class="card_custom" href="{% url 'blog_sab_app:EmpleosDjangoForms' %}">Crear nuevo Empleo</a>
+<hr>
+</hr>
+
+<table id="tabla-datos">
+      <tr>
+        <th>Empresa</th>
+        <th>Periodo</th>
+        <th>Puesto</th>
+        <th>Edicion</th>
+      </tr>
+
+    {% for empleo in empleos %}
+        <tr>
+            <td>{{empleo.empresa}}</td>
+            <td>{{empleo.periodo}}</td>
+            <td>{{empleo.puesto}}</td>
+            <td>(<a href="{% url 'blog_sab_app:UpdateEmpleo' empleo.id %}"><i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i></a>
+            |
+            <a href="{% url 'blog_sab_app:DeleteEmpleo' empleo.id %}"><i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i></a>)</td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}
+</table>

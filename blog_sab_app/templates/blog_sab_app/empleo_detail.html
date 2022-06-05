@@ -1,0 +1,11 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>Detalle del Empleo</h2>
+<hr></hr>
+<p><h3>empresa: {{ empleo.empresa }}</h3></p>
+<p><h4>periodo: {{ empleo.periodo }}</h4></p>
+<p><h3>puesto: {{ empleo.puesto }}</h3></p>
+<p><a class="btn2 btn-primary" href="{% url 'blog_sab_app:empleo-list' %}">Regresar a la lista de Empleos</a></p>
+{% endblock %}

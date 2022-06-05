@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+          overflow: hidden;
+          background-color: #333;
+        }
+
+        .navbar a {
+          float: left;
+          font-size: 16px;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        .dropdown {
+          float: left;
+          overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+          font-size: 16px;
+          border: none;
+          outline: none;
+          color: white;
+          padding: 14px 16px;
+          background-color: inherit;
+          font-family: inherit;
+          margin: 0;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+          background-color: red;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown-content a {
+          float: none;
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+          text-align: left;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        #tabla-datos {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #tabla-datos td, #tabla-datos th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #tabla-datos tr:nth-child(even){background-color: #f2f2f2;}
+
+        #tabla-datos tr:hover {background-color: #ddd;}
+
+        #tabla-datos th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+
+        </style>
+        </head>
+        <body>
+
+        <div class="navbar">
+
+          <div class="dropdown">
+            <button class="dropbtn">Menu
+              <i class="fa fa-caret-down"></i>
+                {% if user.is_authenticated %}
+                    <i>Bienvenido {{ user.username }}</i>
+                {% endif %}
+            </button>
+            <div class="dropdown-content">
+                <a class="navbar-brand" href="{% url 'blog_sab_app:Home' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'blog_sab_app:Estudios' %}">Estudios</a>
+                {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'blog_sab_app:Empleos' %}">Empleos</a>
+                <a class="navbar-brand" href="{% url 'blog_sab_app:Viajes' %}">Viajes</a>
+                <a class="btn btn-secondary" href="{% url 'blog_sab_app:user-update' %}">Editar usuario</a>
+                <a class="btn btn-primary" href="{% url 'blog_sab_app:user-logout' %}">Cerrar Sesión</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'blog_sab_app:user-login' %}">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">Proyecto Final blog Personal</h1>
+                            <div class="text-lg-start text-white">
+                                {% block blog_sab_app_content %}
+
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>Lista de Estudios</h2>
+<a class="card_custom" href="{% url 'blog_sab_app:EstudiosDjangoForms' %}">Crear nuevo Estudio</a>
+<hr></hr>
+
+<table id="tabla-datos">
+      <tr>
+        <th>Universidad</th>
+        <th>Año de inicio</th>
+        <th>Titulo</th>
+        <th>Finalizado</th>
+        <th>Edicion</th>
+      </tr>
+    {% for estudio in estudios %}
+    <tr>
+        <td>{{estudio.universidad}}</td>
+        <td>{{estudio.anio_inicio}}</td>
+        <td>{{estudio.titulo}}</td>
+        <td>{{estudio.finalizado}}</td>
+        <td>(<a href="{% url 'blog_sab_app:UpdateEstudio' estudio.id %}"><i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i></a>
+        |
+        <a href="{% url 'blog_sab_app:DeleteEstudio' estudio.id %}"><i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i></a>)</td>
+    </tr>
+    {% endfor %}
+
+{% endblock %}
+</table>

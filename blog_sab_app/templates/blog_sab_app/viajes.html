@@ -1,0 +1,31 @@
+{% extends "blog_sab_app/index.html" %}
+{% load static %}
+{% block blog_sab_app_content %}
+
+<h2>Lista de Viajes</h2>
+<a class="card_custom" href="{% url 'blog_sab_app:ViajesDjangoForms' %}">Crear nuevo Viaje</a>
+<hr>
+</hr>
+
+<table id="tabla-datos">
+      <tr>
+        <th>Destino</th>
+        <th>Vuelo</th>
+        <th>Fecha</th>
+        <th>Notas</th>
+        <th>Edicion</th>
+      </tr>
+    {% for viaje in viajes %}
+    <tr>
+        <td>{{viaje.destino}}</td>
+        <td>{{viaje.nro_vuelo}}</td>
+        <td>{{viaje.fecha}}</td>
+        <td>{{viaje.notas}}</td>
+        <td>(<a href="{% url 'blog_sab_app:UpdateViaje' viaje.id %}"><i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i></a>
+        |
+        <a href="{% url 'blog_sab_app:DeleteViaje' viaje.id %}"><i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i></a>)</td>
+    </tr>
+    {% endfor %}
+
+{% endblock %}
+</table>
